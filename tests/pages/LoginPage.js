@@ -7,7 +7,7 @@ export class LoginPage {
     }
 
     async visit() {
-        await this.page.goto('https://practice.expandtesting.com/login')
+        await this.page.goto('/login')
     }
 
     async verifyLoginForm() {
