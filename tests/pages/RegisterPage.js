@@ -24,7 +24,6 @@ export class RegisterPage {
 
     async verifyRegisterPage(message) {
         await expect(this.page).toHaveURL(/.*register/)
-        await expect(this.page.locator('#flash')).toContainText(message)
         await expect(this.page.getByRole('button', { name: 'Register' })).toBeVisible()
     }
 

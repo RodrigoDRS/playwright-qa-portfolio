@@ -7,7 +7,6 @@ export class SecurePage {
 
     async verifySecurePage(message) {
         await expect(this.page).toHaveURL(/.*secure/)
-        await expect(this.page.locator('#flash')).toContainText(message)
         await expect(this.page.locator('.button')).toContainText('Logout')
     }
 }

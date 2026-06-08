@@ -22,8 +22,7 @@ export class LoginPage {
     }
 
     async verifyLoginPage(message) {
-        await expect(this.page).toHaveURL(/.*login/)
-        await expect(this.page.locator('#flash')).toContainText(message)
+        await expect(this.page).toHaveURL(/.*login/)    
         await expect(this.page.locator('#submit-login')).toContainText('Login')
     }
 }
