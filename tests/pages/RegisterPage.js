@@ -6,7 +6,9 @@ export class RegisterPage {
     }
 
     async visit() {
-        await this.page.goto('/register')
+        await this.page.goto('/register', {
+            waitUntil: 'domcontentloaded'
+        })
     }
 
     async verifyRegisterForm() {

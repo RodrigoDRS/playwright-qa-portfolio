@@ -7,7 +7,9 @@ export class LoginPage {
     }
 
     async visit() {
-        await this.page.goto('/login')
+        await this.page.goto('/login', {
+            waitUntil: 'domcontentloaded'
+        })
     }
 
     async verifyLoginForm() {
