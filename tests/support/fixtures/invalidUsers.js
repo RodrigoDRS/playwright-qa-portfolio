@@ -6,12 +6,6 @@ export const invalidUsers = [
         "expectedAlert": "Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen."
     },
     {
-        "scenario": "Registration with Username Containing Uppercase Letters",
-        "userName": "RodrigoReis",
-        "password": "ValidPassword123!",
-        "expectedAlert": "Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen."
-    },
-    {
         "scenario": "Registration with Username Containing Special Characters",
         "userName": "rodrigo_reis!",
         "password": "ValidPassword123!",
@@ -42,3 +36,11 @@ export const invalidUsers = [
         "expectedAlert": "Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen."
     }
 ]
+
+
+export const invalidUsersWithUppercase = {
+    "scenario": "Registration with Username Containing Uppercase Letters",
+    "userName": "RodrigoReis",
+    "password": "ValidPassword123!",
+    "expectedAlert": "Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen."
+}

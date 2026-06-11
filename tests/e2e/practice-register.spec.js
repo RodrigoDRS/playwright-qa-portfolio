@@ -1,6 +1,6 @@
 import { test } from '../support'
 import { createUser } from '../support/factories/userFactory'
-import { invalidUsers } from '../support/fixtures/invalidUsers'
+import { invalidUsers, invalidUsersWithUppercase } from '../support/fixtures/invalidUsers'
 
 test('Test Case 1: Successful Registration (Happy Path)', async ({ page }) => {
   const user = createUser()
@@ -58,10 +58,6 @@ test('Test Case 5: Registration with Existing Username', async ({ page, request 
 
 invalidUsers.forEach(({ scenario, userName, password, expectedAlert }) => {
   test(`Test Case 6: Invalid Username (${scenario})`, async ({ page }) => {
-    
-    if (scenario === 'Registration with Username Containing Uppercase Letters') {
-      test.fail(true, 'Known bug: system accepts uppercase username')
-    }
 
     await page.register.visit()
     await page.register.submitRegisterForm(userName, password, password)
@@ -69,4 +65,14 @@ invalidUsers.forEach(({ scenario, userName, password, expectedAlert }) => {
     await page.verifypage.verifyActualPage('register')
 
   })
+})
+
+test.fail('Known Bug - Username with Uppercase Letters', async ({ page }) => {
+  const { userName, password, expectedAlert } = invalidUsersWithUppercase
+
+  await page.register.visit()
+  await page.register.submitRegisterForm(userName, password, password)
+  await page.alert.havetext(expectedAlert)
+  await page.verifypage.verifyActualPage('register')
+
 })
