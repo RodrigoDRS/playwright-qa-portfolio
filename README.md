@@ -22,4 +22,5 @@ E2E and API tests performed on the website: "https://practice.expandtesting.com/
 ```
    npx playwright show-report
 ```
-##OBS.: (In this project, I used an action-based implementation instead of implementing using PageObjects because it offers greater flexibility in where to implement the actions, with all the actions of a test implemented in a single location.)
+## OBS.:
+(In this project, I used an action-based implementation instead of implementing using PageObjects because it offers greater flexibility in where to implement the actions, with all the actions of a test implemented in a single location.)
