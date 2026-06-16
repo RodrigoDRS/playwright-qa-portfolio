@@ -11,6 +11,11 @@ export class Login {
         this.loggedInUser = page.locator('#username')
     }
 
+    async doLogin(username, password) {
+        await this.visit()
+        await this.submitLoginForm(username, password)
+    }
+
     async visit() {
         await this.page.goto('/login', {
             waitUntil: 'domcontentloaded'

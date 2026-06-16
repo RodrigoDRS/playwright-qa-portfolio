@@ -1,8 +1,9 @@
 import { test as base } from '@playwright/test'
-import { Alert, VerifyPage } from '../actions/Component'
-import { Register } from '../actions/Register'
-import { Login } from '../actions/Login'
-import { Secure } from '../actions/Secure'
+import { Alert, VerifyPage } from './actions/Component'
+import { Register } from './actions/Register'
+import { Login } from './actions/Login'
+import { Secure } from './actions/Secure'
+import { Api } from './api'
 
 
 const test = base.extend({
@@ -15,6 +16,13 @@ const test = base.extend({
         context['secure'] = new Secure(page)
         context['alert'] = new Alert(page)
         context['verifypage'] = new VerifyPage(page)
+
+        await use(context)
+    },
+    request: async ({ request }, use) => {
+        const context = request
+
+        context['api'] = new Api(request)
 
         await use(context)
     }

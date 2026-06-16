@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test'
-import { environment } from '../../config/environment'
+import { environment } from '../../../config/environment'
 
 export class Secure {
     constructor(page) {

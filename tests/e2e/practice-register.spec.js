@@ -40,14 +40,8 @@ test('Test Case 4: Registration with Non-matching Passwords', async ({ page }) =
 
 test('Test Case 5: Registration with Existing Username', async ({ page, request }) => {
   const user = createUser()
-
-  await request.post('https://practice.expandtesting.com/register', {
-    data: {
-      username: user.userName,
-      password: user.password,
-      confirmPassword: user.password
-    }
-  })
+  
+  await request.api.registerUser(user.userName, user.password) // Pre-register the user via API
 
   await page.register.visit()
   await page.register.submitRegisterForm(user.userName, user.password, user.password)
@@ -56,6 +50,7 @@ test('Test Case 5: Registration with Existing Username', async ({ page, request 
 
 })
 
+//testing multiple invalid username scenarios using test.each
 invalidUsers.forEach(({ scenario, userName, password, expectedAlert }) => {
   test(`Test Case 6: Invalid Username (${scenario})`, async ({ page }) => {
 
@@ -67,6 +62,7 @@ invalidUsers.forEach(({ scenario, userName, password, expectedAlert }) => {
   })
 })
 
+//the system is registering users with uppercase, so the first time it registers and the secont time it occurs the other error, so it is marked as known bug
 test.fail('Known Bug - Username with Uppercase Letters', async ({ page }) => {
   const { userName, password, expectedAlert } = invalidUsersWithUppercase
 
