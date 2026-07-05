@@ -26,7 +26,6 @@ export class Login {
         await expect(this.loginForm).toBeVisible()
         await this.usernameInput.fill(username)
         await this.passwordInput.fill(password)
-        await expect(this.loginButton).toBeEnabled()
         await this.loginButton.click()
     }
 

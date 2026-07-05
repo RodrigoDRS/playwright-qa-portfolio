@@ -1,6 +1,11 @@
 import { test } from '../support'
 import { createUser } from '../support/factories/userFactory'
+import { blockExternalRequests } from '../support/helpers/blockExternalRequests'
 import { invalidUsers, invalidUsersWithUppercase } from '../support/fixtures/invalidUsers'
+
+test.beforeEach(async ({ page }) => {
+    await blockExternalRequests(page)
+})
 
 test('Test Case 1: Successful Registration (Happy Path)', async ({ page }) => {
   const user = createUser()
@@ -31,6 +36,7 @@ test('Test Case 3: Registration with Missing Password', async ({ page }) => {
 
 test('Test Case 4: Registration with Non-matching Passwords', async ({ page }) => {
   const user = createUser()
+
   await page.register.visit()
   await page.register.submitRegisterForm(user.userName, user.password, 'DifferentPassword123!')
   await page.alert.havetext('Passwords do not match.')
@@ -39,8 +45,7 @@ test('Test Case 4: Registration with Non-matching Passwords', async ({ page }) =
 })
 
 test('Test Case 5: Registration with Existing Username', async ({ page, request }) => {
-  const user = createUser()
-  
+  const user = createUser()  
   await request.api.registerUser(user.userName, user.password) // Pre-register the user via API
 
   await page.register.visit()

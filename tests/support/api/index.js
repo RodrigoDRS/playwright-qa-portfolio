@@ -7,7 +7,7 @@ export class Api {
     }
 
     async registerUser(username, password) {
-        await this.request.post('https://practice.expandtesting.com/register', {
+        await this.request.post('/register', {
             data: {
                 username: username,
                 password: password,
